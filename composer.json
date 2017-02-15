@@ -1,0 +1,24 @@
+{
+	"name": "edoger/aliyun-sms-sdk",
+	"description": "AliYun short message service software development kit.",
+	"keywords": ["edoger", "SDK", "SMS"],
+	"license": "Apache-2.0",
+	"type": "library",
+	"homepage": "https://github.com/edoger/aliyun-sms-sdk",
+	"authors": [
+		{
+			"name": "Qingshan Luo",
+			"email": "shanshan.lqs@gmail.com",
+			"homepage": "https://www.edoger.com",
+			"role": "developer"
+		}
+	],
+	"require": {
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AliYunSmsSdk\\": "src/AliYunSmsSdk/"
+        }
+    }
+}
