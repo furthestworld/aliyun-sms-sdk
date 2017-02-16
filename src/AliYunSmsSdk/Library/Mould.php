@@ -21,46 +21,52 @@ use AliYunSmsSdk\Exceptions\LauncherException;
 use AliYunSmsSdk\Launcher;
 
 /**
- *
+ * The short message sending model class.
  */
 class Mould implements MouldInterface
 {
     /**
-     * [$signer description]
-     * @var null
+     * The request parameters signer instance.
+     *
+     * @var SignerInterface
      */
     private static $signer = null;
 
     /**
-     * [$launcher description]
-     * @var [type]
+     * The launcher instance.
+     *
+     * @var LauncherInterface
      */
     private $launcher;
 
     /**
-     * [$sender description]
-     * @var [type]
+     * The HTTP request sender instance.
+     *
+     * @var SenderInterface
      */
     private $sender;
 
     /**
-     * [$sign description]
-     * @var [type]
+     * The short message signature name.
+     *
+     * @var string
      */
     private $sign;
 
     /**
-     * [$template description]
-     * @var [type]
+     * The short message template code.
+     *
+     * @var string
      */
     private $template;
 
     /**
-     * [__construct description]
-     * @param LauncherInterface $launcher [description]
-     * @param SenderInterface   $sender   [description]
-     * @param [type]            $sign     [description]
-     * @param [type]            $template [description]
+     * Initialize short message sending model instance.
+     *
+     * @param LauncherInterface  $launcher  The launcher instance.
+     * @param SenderInterface    $sender    The HTTP request sender instance.
+     * @param string             $sign      The short message signature name.
+     * @param string             $template  The short message template code.
      */
     public function __construct(LauncherInterface $launcher, SenderInterface $sender, $sign, $template)
     {
@@ -75,10 +81,13 @@ class Mould implements MouldInterface
     }
 
     /**
-     * [send description]
-     * @param  [type] $mobile     [description]
-     * @param  array  $parameters [description]
-     * @return [type]             [description]
+     * Send short message to the specified phone number.
+     * If you need to send a short message to multiple phone numbers at the same time,
+     * you can pass an array containing a number of phone numbers.
+     *
+     * @param  array|string  $mobile      Send target phone number.
+     * @param  array         $parameters  Short message template variables.
+     * @return ResponseInterface
      */
     public function send($mobile, array $parameters = [])
     {
@@ -118,8 +127,9 @@ class Mould implements MouldInterface
     }
 
     /**
-     * [uuid description]
-     * @return [type] [description]
+     * Create a universally unique identifier.
+     *
+     * @return string
      */
     private function uuid()
     {
@@ -127,9 +137,10 @@ class Mould implements MouldInterface
     }
 
     /**
-     * [signature description]
-     * @param  array  $queries [description]
-     * @return [type]          [description]
+     * Calculate the signature of the request parameters.
+     *
+     * @param  array  $queries  The HTTP request parameters.
+     * @return string
      */
     private function signature(array $queries)
     {
@@ -142,9 +153,10 @@ class Mould implements MouldInterface
     }
 
     /**
-     * [encode description]
-     * @param  [type] $value [description]
-     * @return [type]        [description]
+     * Encodes a string and returns the encoded string.
+     *
+     * @param  string  $value  The target string.
+     * @return string
      */
     private function encode($value)
     {

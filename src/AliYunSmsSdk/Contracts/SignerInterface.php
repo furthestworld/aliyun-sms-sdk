@@ -14,7 +14,30 @@
  */
 namespace AliYunSmsSdk\Contracts;
 
+/**
+ * The request parameters signer interface.
+ */
 interface SignerInterface
 {
+    /**
+     * Calculate and return the signature value.
+     *
+     * @param  string  $source  The source string.
+     * @return string
+     */
+    public function sign($source);
 
+    /**
+     * Gets signature method name.
+     *
+     * @return string
+     */
+    public function method();
+
+    /**
+     * Gets signature algorithm version.
+     *
+     * @return string
+     */
+    public function version();
 }

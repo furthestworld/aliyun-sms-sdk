@@ -20,36 +20,41 @@ use AliYunSmsSdk\Exceptions\LauncherException;
 use AliYunSmsSdk\Launcher;
 
 /**
- *
+ * The HTTP request sender class.
  */
 class Sender implements SenderInterface
 {
     /**
-     * [$launcher description]
-     * @var [type]
+     * The launcher instance.
+     *
+     * @var LauncherInterface
      */
     private $launcher;
 
     /**
-     * [$url description]
+     * The user agent string.
+     *
      * @var string
-     */
-    private $url = 'https://sms.aliyuncs.com/';
-
-    /**
-     * [$userAgent description]
-     * @var [type]
      */
     private $userAgent;
 
     /**
-     * [__construct description]
-     * @param LauncherInterface $launcher [description]
+     * The request URL.
+     *
+     * @var string
+     */
+    protected $url = 'https://sms.aliyuncs.com/';
+
+    /**
+     * Initialize HTTP request sender instance.
+     *
+     * @param LauncherInterface  $launcher  The launcher instance.
      */
     public function __construct(LauncherInterface $launcher)
     {
         $this->launcher = $launcher;
 
+        /* Create user agent string. */
         $info = curl_version();
         $php  = PHP_VERSION;
         $curl = isset($info['version']) ? $info['version'] : 'unknown';
@@ -60,9 +65,10 @@ class Sender implements SenderInterface
     }
 
     /**
-     * [request description]
-     * @param  array  $queries [description]
-     * @return [type]          [description]
+     * Send the HTTP request and return the response object.
+     *
+     * @param  array  $queries  The HTTP request parameters.
+     * @return ResponseInterface
      */
     public function request(array $queries = [])
     {
@@ -105,9 +111,10 @@ class Sender implements SenderInterface
     }
 
     /**
-     * [triggerException description]
-     * @param  [type] $message [description]
-     * @return [type]          [description]
+     * Throw an 'LauncherException' instanse.
+     *
+     * @param  string  $message  The exception information.
+     * @return void
      */
     private function triggerException($message)
     {

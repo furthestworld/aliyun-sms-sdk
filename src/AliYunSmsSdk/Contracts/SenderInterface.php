@@ -14,7 +14,16 @@
  */
 namespace AliYunSmsSdk\Contracts;
 
+/**
+ * The HTTP request sender interface.
+ */
 interface SenderInterface
 {
-
+    /**
+     * Send the HTTP request and return the response object.
+     *
+     * @param  array  $queries  The HTTP request parameters.
+     * @return ResponseInterface
+     */
+    public function request(array $queries = []);
 }

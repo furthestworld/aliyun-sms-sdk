@@ -20,6 +20,9 @@ use AliYunSmsSdk\Library\Sender;
 
 /**
  * AliYun short message service software development kit launcher class.
+ *
+ * The launcher instance is used to manage configuration options and manage model instances.
+ * We recommend that the global create only one instance of the launcher.
  */
 class Launcher implements LauncherInterface
 {
@@ -28,44 +31,64 @@ class Launcher implements LauncherInterface
      */
     const VERSION = '1.0.0-alpha1';
 
-    const ERROR_OPTION   = 600;
-    const ERROR_HTTP     = 610;
-    const ERROR_SERVER   = 620;
-    const ERROR_ARGUMENT = 630;
-    const ERROR_JSON     = 640;
-
     /**
-     * [$options description]
-     * @var array
+     * Send HTTP request exception code.
      */
-    private static $options = [
-        'accessKeyId'  => '',
-        'accessSecret' => '',
-    ];
+    const ERROR_HTTP = 600;
 
     /**
-     * [$sender description]
-     * @var [type]
+     * AliYun short message service exception code.
+     */
+    const ERROR_SERVER = 610;
+
+    /**
+     * The software development kit argument exception code.
+     */
+    const ERROR_ARGUMENT = 620;
+
+    /**
+     * The JSON parse exception code.
+     */
+    const ERROR_JSON = 630;
+
+    /**
+     * The access key ID.
+     *
+     * @var string
+     */
+    private $accessKeyId;
+
+    /**
+     * The access secret.
+     *
+     * @var string
+     */
+    private $accessSecret;
+
+    /**
+     * The HTTP request sender instance.
+     *
+     * @var SenderInterface
      */
     private static $sender = null;
 
     /**
-     * [$moulds description]
+     * The short message sending model instances.
+     *
      * @var array
      */
     private static $moulds = [];
 
     /**
-     * [__construct description]
-     * @param array $options [description]
+     * Initialize launcher instance.
+     *
+     * @param string  $accessKeyId   The access key ID.
+     * @param string  $accessSecret  The access secret.
      */
-    public function __construct(array $options = [])
+    public function __construct($accessKeyId, $accessSecret)
     {
-        if (!empty($options)) {
-            foreach ($options as $option => $value) {
-                $this->setOption($option, $value);
-            }
-        }
+        $this->accessKeyId  = $accessKeyId;
+        $this->accessSecret = $accessSecret;
 
         if (!self::$sender) {
             self::$sender = new Sender($this);
@@ -73,10 +96,11 @@ class Launcher implements LauncherInterface
     }
 
     /**
-     * [mould description]
-     * @param  [type] $sign     [description]
-     * @param  [type] $template [description]
-     * @return [type]           [description]
+     * Creates and returns a short message sending model instance.
+     *
+     * @param  string  $sign      The short message signature name.
+     * @param  string  $template  The short message template code.
+     * @return MouldInterface
      */
     public function mould($sign, $template)
     {
@@ -90,31 +114,22 @@ class Launcher implements LauncherInterface
     }
 
     /**
-     * [setOption description]
-     * @param [type] $option [description]
-     * @param [type] $value  [description]
+     * Gets access key ID.
+     *
+     * @return string
      */
-    public function setOption($option, $value)
+    public function getAccessKeyId()
     {
-        if (array_key_exists($option, self::$options)) {
-            self::$options[$option] = $value;
-            return true;
-        } else {
-            return false;
-        }
+        return $this->accessKeyId;
     }
 
     /**
-     * [getOption description]
-     * @param  [type] $option [description]
-     * @return [type]         [description]
+     * Gets access secret.
+     *
+     * @return string
      */
-    public function getOption($option)
+    public function getAccessSecret()
     {
-        if (array_key_exists($option, self::$options)) {
-            return self::$options[$option];
-        } else {
-            return null;
-        }
+        return $this->accessSecret;
     }
 }

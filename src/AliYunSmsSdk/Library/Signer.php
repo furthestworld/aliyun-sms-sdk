@@ -18,19 +18,21 @@ use AliYunSmsSdk\Contracts\LauncherInterface;
 use AliYunSmsSdk\Contracts\SignerInterface;
 
 /**
- *
+ * The request parameters signer class.
  */
 class Signer implements SignerInterface
 {
     /**
-     * [$launcher description]
-     * @var [type]
+     * The launcher instance.
+     *
+     * @var LauncherInterface
      */
     private $launcher;
 
     /**
-     * [__construct description]
-     * @param LauncherInterface $launcher [description]
+     * Initialize HTTP request sender instance.
+     *
+     * @param LauncherInterface  $launcher  The launcher instance.
      */
     public function __construct(LauncherInterface $launcher)
     {
@@ -38,8 +40,9 @@ class Signer implements SignerInterface
     }
 
     /**
-     * [sign description]
-     * @param  [type] $source       [description]
+     * Calculate and return the signature value.
+     *
+     * @param  string  $source  The source string.
      * @return string
      */
     public function sign($source)
@@ -50,8 +53,9 @@ class Signer implements SignerInterface
     }
 
     /**
-     * [method description]
-     * @return [type] [description]
+     * Gets signature method name.
+     *
+     * @return string
      */
     public function method()
     {
@@ -59,8 +63,9 @@ class Signer implements SignerInterface
     }
 
     /**
-     * [version description]
-     * @return [type] [description]
+     * Gets signature algorithm version.
+     *
+     * @return string
      */
     public function version()
     {

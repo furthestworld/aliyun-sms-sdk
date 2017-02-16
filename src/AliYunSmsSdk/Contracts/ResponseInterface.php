@@ -14,7 +14,43 @@
  */
 namespace AliYunSmsSdk\Contracts;
 
+/**
+ * Send short message response interface.
+ */
 interface ResponseInterface
 {
+    /**
+     * Gets the request ID.
+     *
+     * @return string
+     */
+    public function requestId();
 
+    /**
+     * Gets the response body.
+     *
+     * @return string
+     */
+    public function body();
+
+    /**
+     * Gets the decoded response result.
+     *
+     * @return array
+     */
+    public function result();
+
+    /**
+     * Gets the HTTP response status code.
+     *
+     * @return integer
+     */
+    public function code();
+
+    /**
+     * Gets the successful state of sending.
+     *
+     * @return boolean
+     */
+    public function success();
 }

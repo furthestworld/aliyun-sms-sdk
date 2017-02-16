@@ -15,7 +15,7 @@
 namespace AliYunSmsSdk\Exceptions;
 
 /**
- *
+ * AliYun short message service software development kit exception class.
  */
 class LauncherException extends \Exception
 {

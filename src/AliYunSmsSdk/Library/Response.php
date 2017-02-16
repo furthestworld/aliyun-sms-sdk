@@ -19,32 +19,36 @@ use AliYunSmsSdk\Exceptions\LauncherException;
 use AliYunSmsSdk\Launcher;
 
 /**
- *
+ * Send short message response class.
  */
 class Response implements ResponseInterface
 {
     /**
-     * [$body description]
+     * The response body.
+     *
      * @var string
      */
     private $body = '';
 
     /**
-     * [$result description]
+     * The decoded response result.
+     *
      * @var array
      */
     private $result = [];
 
     /**
-     * [$code description]
-     * @var [type]
+     * The HTTP response status code.
+     *
+     * @var integer
      */
     private $code;
 
     /**
-     * [__construct description]
-     * @param [type] $body [description]
-     * @param [type] $code   [description]
+     * Initialize short message response instance.
+     *
+     * @param string   $body  The response body.
+     * @param integer  $code  The HTTP response status code.
      */
     public function __construct($body, $code)
     {
@@ -62,8 +66,9 @@ class Response implements ResponseInterface
     }
 
     /**
-     * [requestId description]
-     * @return [type] [description]
+     * Gets the request ID.
+     *
+     * @return string
      */
     public function requestId()
     {
@@ -75,8 +80,9 @@ class Response implements ResponseInterface
     }
 
     /**
-     * [body description]
-     * @return [type] [description]
+     * Gets the response body.
+     *
+     * @return string
      */
     public function body()
     {
@@ -84,8 +90,9 @@ class Response implements ResponseInterface
     }
 
     /**
-     * [result description]
-     * @return [type] [description]
+     * Gets the decoded response result.
+     *
+     * @return array
      */
     public function result()
     {
@@ -93,8 +100,9 @@ class Response implements ResponseInterface
     }
 
     /**
-     * [code description]
-     * @return [type] [description]
+     * Gets the HTTP response status code.
+     *
+     * @return integer
      */
     public function code()
     {
@@ -102,8 +110,9 @@ class Response implements ResponseInterface
     }
 
     /**
-     * [success description]
-     * @return [type] [description]
+     * Gets the successful state of sending.
+     *
+     * @return boolean
      */
     public function success()
     {
