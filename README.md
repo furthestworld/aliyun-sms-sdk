@@ -7,10 +7,7 @@ Aliyun short message service software development kit.
 <?php
 
 // Create launcher instanse.
-$launcher = new AliYunSmsSdk\Launcher([
-    "accessKeyId"  => "Your Access Key Id",
-    "accessSecret" => "Your Access Secret",
-]);
+$launcher = new AliYunSmsSdk\Launcher("Your access key ID", "Your access secret");
 
 // Create model instanse.
 $mould = $launcher->mould("Sign Name", "Template Code");
