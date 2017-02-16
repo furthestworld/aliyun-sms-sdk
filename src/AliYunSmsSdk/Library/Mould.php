@@ -111,7 +111,7 @@ class Mould implements MouldInterface
             'ParamString'      => $vars,
             'Format'           => 'JSON',
             'Version'          => '2016-09-27',
-            'AccessKeyId'      => $this->launcher->getOption('accessKeyId'),
+            'AccessKeyId'      => $this->launcher->getAccessKeyId(),
             'Timestamp'        => date('Y-m-d\TH:i:s\Z'),
             'SignatureNonce'   => $this->uuid(),
             'SignatureMethod'  => self::$signer->method(),

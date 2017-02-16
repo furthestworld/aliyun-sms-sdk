@@ -48,7 +48,7 @@ class Signer implements SignerInterface
     public function sign($source)
     {
         return base64_encode(
-            hash_hmac('sha1', $source, $this->launcher->getOption('accessSecret') . '&', true)
+            hash_hmac('sha1', $source, $this->launcher->getAccessSecret() . '&', true)
         );
     }
 
