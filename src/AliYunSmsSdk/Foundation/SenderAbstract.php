@@ -54,12 +54,4 @@ abstract class SenderAbstract
 
         return static::$userAgent;
     }
-
-    /**
-     * Send the HTTP request and return the response object.
-     *
-     * @param  array  $queries  The HTTP request parameters.
-     * @return ResponseInterface
-     */
-    abstract public static function request(array $queries = []);
 }
