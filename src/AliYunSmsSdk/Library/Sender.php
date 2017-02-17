@@ -15,6 +15,7 @@
 namespace AliYunSmsSdk\Library;
 
 use AliYunSmsSdk\Contracts\SenderInterface;
+use AliYunSmsSdk\Exceptions\LauncherException;
 use AliYunSmsSdk\Foundation\SenderAbstract;
 
 /**
