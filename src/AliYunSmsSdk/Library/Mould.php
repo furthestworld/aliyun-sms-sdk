@@ -16,7 +16,6 @@ namespace AliYunSmsSdk\Library;
 
 use AliYunSmsSdk\Contracts\LauncherInterface;
 use AliYunSmsSdk\Contracts\MouldInterface;
-use AliYunSmsSdk\Contracts\SenderInterface;
 use AliYunSmsSdk\Exceptions\LauncherException;
 use AliYunSmsSdk\Launcher;
 
@@ -40,13 +39,6 @@ class Mould implements MouldInterface
     private $launcher;
 
     /**
-     * The HTTP request sender instance.
-     *
-     * @var SenderInterface
-     */
-    private $sender;
-
-    /**
      * The short message signature name.
      *
      * @var string
@@ -64,14 +56,12 @@ class Mould implements MouldInterface
      * Initialize short message sending model instance.
      *
      * @param LauncherInterface  $launcher  The launcher instance.
-     * @param SenderInterface    $sender    The HTTP request sender instance.
      * @param string             $sign      The short message signature name.
      * @param string             $template  The short message template code.
      */
-    public function __construct(LauncherInterface $launcher, SenderInterface $sender, $sign, $template)
+    public function __construct(LauncherInterface $launcher, $sign, $template)
     {
         $this->launcher = $launcher;
-        $this->sender   = $sender;
         $this->sign     = $sign;
         $this->template = $template;
 
@@ -123,7 +113,7 @@ class Mould implements MouldInterface
 
         $queries['Signature'] = $this->signature($queries);
 
-        return $this->sender->request($queries);
+        return Sender::request($queries);
     }
 
     /**

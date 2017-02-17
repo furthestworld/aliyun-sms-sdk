@@ -25,5 +25,5 @@ interface SenderInterface
      * @param  array  $queries  The HTTP request parameters.
      * @return ResponseInterface
      */
-    public function request(array $queries = []);
+    public static function request(array $queries = []);
 }

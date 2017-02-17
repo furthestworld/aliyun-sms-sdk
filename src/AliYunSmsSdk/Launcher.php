@@ -16,7 +16,6 @@ namespace AliYunSmsSdk;
 
 use AliYunSmsSdk\Contracts\LauncherInterface;
 use AliYunSmsSdk\Library\Mould;
-use AliYunSmsSdk\Library\Sender;
 
 /**
  * AliYun short message service software development kit launcher class.
@@ -66,13 +65,6 @@ class Launcher implements LauncherInterface
     private $accessSecret;
 
     /**
-     * The HTTP request sender instance.
-     *
-     * @var SenderInterface
-     */
-    private static $sender = null;
-
-    /**
      * The short message sending model instances.
      *
      * @var array
@@ -89,10 +81,6 @@ class Launcher implements LauncherInterface
     {
         $this->accessKeyId  = $accessKeyId;
         $this->accessSecret = $accessSecret;
-
-        if (!self::$sender) {
-            self::$sender = new Sender($this);
-        }
     }
 
     /**
@@ -107,7 +95,7 @@ class Launcher implements LauncherInterface
         $id = md5($sign . $template);
 
         if (!isset(self::$moulds[$id])) {
-            self::$moulds[$id] = new Mould($this, self::$sender, $sign, $template);
+            self::$moulds[$id] = new Mould($this, $sign, $template);
         }
 
         return self::$moulds[$id];
