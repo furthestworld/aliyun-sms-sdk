@@ -93,9 +93,6 @@ class Mould implements MouldInterface
             );
         }
 
-        $timezone = date_default_timezone_get();
-
-        date_default_timezone_set("GMT");
         $queries = [
             'Action'           => 'SingleSendSms',
             'SignName'         => $this->sign,
@@ -105,18 +102,37 @@ class Mould implements MouldInterface
             'Format'           => 'JSON',
             'Version'          => '2016-09-27',
             'AccessKeyId'      => $this->launcher->getAccessKeyId(),
-            'Timestamp'        => date('Y-m-d\TH:i:s\Z'),
+            'Timestamp'        => $this->getTimestamp(),
             'SignatureNonce'   => $this->uuid(),
             'SignatureMethod'  => self::$signer->method(),
             'SignatureVersion' => self::$signer->version(),
         ];
-        date_default_timezone_set($timezone);
 
         ksort($queries);
 
         $queries['Signature'] = $this->signature($queries);
 
         return Sender::request($queries);
+    }
+
+    /**
+     * Gets request timestamp.
+     *
+     * @return string
+     */
+    private function getTimestamp()
+    {
+        $timezone = date_default_timezone_get();
+
+        if ($timezone === 'GMT') {
+            $timestamp = date('Y-m-d\TH:i:s\Z');
+        } else {
+            date_default_timezone_set("GMT");
+            $timestamp = date('Y-m-d\TH:i:s\Z');
+            date_default_timezone_set($timezone);
+        }
+
+        return $timestamp;
     }
 
     /**
