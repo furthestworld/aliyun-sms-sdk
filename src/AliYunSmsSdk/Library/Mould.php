@@ -17,7 +17,7 @@ namespace AliYunSmsSdk\Library;
 use AliYunSmsSdk\Contracts\LauncherInterface;
 use AliYunSmsSdk\Contracts\MouldInterface;
 use AliYunSmsSdk\Exceptions\LauncherException;
-use AliYunSmsSdk\Launcher;
+use AliYunSmsSdk\Foundation\ExceptionCodes;
 
 /**
  * The short message sending model class.
@@ -87,7 +87,10 @@ class Mould implements MouldInterface
 
         $vars = json_encode(array_map('strval', $parameters));
         if (!is_string($vars)) {
-            throw new LauncherException('Eecode JSON error: ' . json_last_error_msg(), Launcher::ERROR_JSON);
+            throw new LauncherException(
+                'Eecode JSON error: ' . json_last_error_msg(),
+                ExceptionCodes::ERROR_JSON_ENCODE
+            );
         }
 
         $timezone = date_default_timezone_get();

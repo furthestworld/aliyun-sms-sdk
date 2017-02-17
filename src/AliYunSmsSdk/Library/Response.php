@@ -16,7 +16,7 @@ namespace AliYunSmsSdk\Library;
 
 use AliYunSmsSdk\Contracts\ResponseInterface;
 use AliYunSmsSdk\Exceptions\LauncherException;
-use AliYunSmsSdk\Launcher;
+use AliYunSmsSdk\Foundation\ExceptionCodes;
 
 /**
  * Send short message response class.
@@ -58,7 +58,10 @@ class Response implements ResponseInterface
         if ($this->success()) {
             $result = json_decode($body, true);
             if (!is_array($result)) {
-                throw new LauncherException('Decode JSON error: ' . json_last_error_msg(), Launcher::ERROR_JSON);
+                throw new LauncherException(
+                    'Decode JSON error: ' . json_last_error_msg(),
+                    ExceptionCodes::ERROR_JSON_DECODE
+                );
             }
 
             $this->result = $result;

@@ -28,27 +28,7 @@ class Launcher implements LauncherInterface
     /**
      * AliYun SMS SDK version string.
      */
-    const VERSION = '1.0.0-beta1';
-
-    /**
-     * Send HTTP request exception code.
-     */
-    const ERROR_HTTP = 600;
-
-    /**
-     * AliYun short message service exception code.
-     */
-    const ERROR_SERVER = 610;
-
-    /**
-     * The software development kit argument exception code.
-     */
-    const ERROR_ARGUMENT = 620;
-
-    /**
-     * The JSON parse exception code.
-     */
-    const ERROR_JSON = 630;
+    const VERSION = '1.0.0-beta2';
 
     /**
      * The access key ID.

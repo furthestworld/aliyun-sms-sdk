@@ -32,7 +32,10 @@ class Sender extends SenderAbstract implements SenderInterface
     {
         $ch = curl_init(static::$url);
         if (!$ch) {
-            static::triggerException('Failed to create CURL handle.');
+            throw new LauncherException(
+                'Failed to create CURL handle.',
+                ExceptionCodes::ERROR_HTTP_INIT
+            );
         }
 
         $options = [
@@ -51,14 +54,22 @@ class Sender extends SenderAbstract implements SenderInterface
         if (!curl_setopt_array($ch, $options)) {
             $message = curl_error($ch);
             curl_close($ch);
-            static::triggerException('Failed to set CURL handle options: ' . $message);
+
+            throw new LauncherException(
+                'Failed to set CURL handle options: ' . $message,
+                ExceptionCodes::ERROR_HTTP_SETOPT
+            );
         }
 
         $body = curl_exec($ch);
         if ($body === false) {
             $message = curl_error($ch);
             curl_close($ch);
-            static::triggerException('Failed to execute CURL session: ' . $message);
+
+            throw new LauncherException(
+                'Failed to execute CURL session: ' . $message,
+                ExceptionCodes::ERROR_HTTP_EXEC
+            );
         }
 
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);

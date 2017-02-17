@@ -14,52 +14,26 @@
  */
 namespace AliYunSmsSdk\Foundation;
 
-use AliYunSmsSdk\Launcher;
-
 /**
- * The HTTP request sender abstract class.
+ * AliYun short message service software development kit exception codes class.
  */
-abstract class SenderAbstract
+class ExceptionCodes
 {
     /**
-     * The user agent string.
-     *
-     * @var string
+     * The JSON parse exception codes.
      */
-    protected static $userAgent = null;
+    const ERROR_JSON_ENCODE = 501;
+    const ERROR_JSON_DECODE = 502;
 
     /**
-     * The request URL.
-     *
-     * @var string
+     * Send HTTP request exception codes.
      */
-    protected static $url = 'https://sms.aliyuncs.com/';
+    const ERROR_HTTP_INIT   = 601;
+    const ERROR_HTTP_SETOPT = 602;
+    const ERROR_HTTP_EXEC   = 603;
 
     /**
-     * Get request user agent string.
-     *
-     * @return string
+     * AliYun short message service exception code.
      */
-    protected static function getUserAgent()
-    {
-        if (is_null(static::$userAgent)) {
-            $info = curl_version();
-            $php  = PHP_VERSION;
-            $curl = isset($info['version']) ? $info['version'] : 'unknown';
-            $ssl  = isset($info['ssl_version']) ? $info['ssl_version'] : 'unknown';
-            $sdk  = Launcher::VERSION;
-
-            static::$userAgent = "PHP/{$php} curl/{$curl} (ssl/{$ssl}) Edoger_AliYun_SMS_SDK/{$sdk}";
-        }
-
-        return static::$userAgent;
-    }
-
-    /**
-     * Send the HTTP request and return the response object.
-     *
-     * @param  array  $queries  The HTTP request parameters.
-     * @return ResponseInterface
-     */
-    abstract public static function request(array $queries = []);
+    const ERROR_SERVER = 700;
 }
