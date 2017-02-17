@@ -27,7 +27,7 @@ class LauncherTest extends TestCase
      *
      * @return void
      */
-    public function testLauncherOne()
+    public function testLauncher()
     {
         $launcher = new Launcher('ABCDEFGHIJKLMN', 'abcdefghijklmnopqrstuvwxyz');
         $mould    = $launcher->mould('TestName', 'SMS_11111111');
