@@ -31,9 +31,4 @@ class ExceptionCodes
     const ERROR_HTTP_INIT   = 601;
     const ERROR_HTTP_SETOPT = 602;
     const ERROR_HTTP_EXEC   = 603;
-
-    /**
-     * AliYun short message service exception code.
-     */
-    const ERROR_SERVER = 700;
 }
