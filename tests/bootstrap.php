@@ -13,5 +13,13 @@
  *+------------------------------------------------------------------------------------------------+
  */
 
+/**
+ * Composer autoloader.
+ */
 require __DIR__ . '/../vendor/autoload.php';
+
+/**
+ * The HTTP request sender class.
+ * For unit test.
+ */
 require __DIR__ . '/SenderTest.php';
