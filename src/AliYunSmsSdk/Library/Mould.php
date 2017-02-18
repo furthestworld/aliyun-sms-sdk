@@ -142,7 +142,14 @@ class Mould implements MouldInterface
      */
     private function uuid()
     {
-        return md5(implode([mt_rand(), mt_rand(), mt_rand(), mt_rand(), mt_rand(), uniqid()]));
+        return md5(implode([
+            mt_rand(),
+            mt_rand(),
+            mt_rand(),
+            mt_rand(),
+            mt_rand(),
+            uniqid('', true),
+        ]));
     }
 
     /**
