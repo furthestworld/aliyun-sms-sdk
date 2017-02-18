@@ -44,6 +44,7 @@ class Sender extends SenderAbstract implements SenderInterface
             CURLOPT_TIMEOUT        => 60,
             CURLOPT_CONNECTTIMEOUT => 30,
             CURLOPT_USERAGENT      => static::getUserAgent(),
+            CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
             CURLOPT_PORT           => 443,
             CURLOPT_FAILONERROR    => false,
             CURLOPT_RETURNTRANSFER => true,
