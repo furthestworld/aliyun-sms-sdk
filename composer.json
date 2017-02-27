@@ -1,7 +1,7 @@
 {
 	"name": "edoger/aliyun-sms-sdk",
 	"description": "AliYun short message service software development kit.",
-	"keywords": ["edoger", "SDK", "SMS"],
+	"keywords": ["edoger", "aliyun", "sms", "sdk"],
 	"license": "Apache-2.0",
 	"type": "library",
 	"homepage": "https://github.com/edoger/aliyun-sms-sdk",
