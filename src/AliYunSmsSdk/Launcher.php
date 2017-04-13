@@ -28,7 +28,7 @@ class Launcher implements LauncherInterface
     /**
      * AliYun SMS SDK version string.
      */
-    const VERSION = '1.0.2';
+    const VERSION = '2.0.0';
 
     /**
      * The access key ID.
