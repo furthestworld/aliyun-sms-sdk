@@ -6,7 +6,9 @@
          verbose="true">
     <testsuites>
         <testsuite name="xtoos">
-            <file>tests/AliYunSmsSdkTest/LauncherTest.php</file>
+            <file>tests/ServicesTest/ArgumentTest.php</file>
+            <file>tests/ServicesTest/HelperTest.php</file>
+            <file>tests/ServicesTest/ResponseTest.php</file>
         </testsuite>
     </testsuites>
     <filter>
