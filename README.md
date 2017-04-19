@@ -12,23 +12,21 @@ Aliyun short message service software development kit.
 ```php
 <?php
 
-// Create launcher instanse.
-$launcher = new AliYunSmsSdk\Launcher("Your access key ID", "Your access secret");
+$sms = new Services\Sms("your-access-key-id", "your-access-secret");
 
-// Create model instanse.
-$mould = $launcher->mould("Sign Name", "Template Code");
-
-// Send message.
-$response = $mould->send(
-    "18888888888",         // Mobile number, An array can be sent to multiple numbers.
-    ["code" => 100000]     // Template variables.
+$response = $sms->send(
+    "Your-Sign-Name", 
+    "Your-Template-Code", 
+    "18888888888",               // Mobile number, An array can be sent to multiple numbers.
+    ["code" => 100000]           // Template variables.
 );
 
-$response->body();      // JSON
-$response->result();    // Array
-$response->code();      // Integer
-$response->success();   // Boolean
-$response->requestId(); // String
+$response->body();               // The response JSON.
+$response->result();             // The response array.
+$response->status();             // The response HTTP status code.
+$response->success();            // Is OK ?
+$response->exists("RequestId");  // Determines whether a result data exists.
+$response->get("RequestId");     // Get a result data by name.
 
 ?>
 ```
