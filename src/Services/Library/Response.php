@@ -13,7 +13,7 @@
 namespace Services\Library;
 
 /**
- *
+ * The HTTP response manager.
  */
 class Response
 {

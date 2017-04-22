@@ -16,7 +16,7 @@ use DateTime;
 use DateTimeZone;
 
 /**
- *
+ * The helper library.
  */
 class Helper
 {

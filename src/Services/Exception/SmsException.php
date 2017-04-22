@@ -13,7 +13,7 @@
 namespace Services\Exception;
 
 /**
- *
+ * The SDK exception.
  */
 class SmsException extends \Exception
 {
